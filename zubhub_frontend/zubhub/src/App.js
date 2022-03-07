@@ -22,7 +22,12 @@ const EmailConfirm = React.lazy(() =>
 const PhoneConfirm = React.lazy(() =>
   import('./views/phone_confirm/PhoneConfirm'),
 );
-const Profile = React.lazy(() => import('./views/profile/Profile'));
+const Profile = React.lazy(() => 
+  import('./views/profile/Profile')
+);
+const AccounStatus = React.lazy(()=> 
+  import('./views/account_status/AccountStatus')
+);
 const EditProfile = React.lazy(() =>
   import('./views/edit_profile/EditProfile'),
 );
@@ -250,7 +255,22 @@ function App(props) {
           path="/creators/:username"
           render={routeProps => (
             <PageWrapper {...routeProps} {...props}>
-              <LazyImport LazyComponent={Profile} {...routeProps} {...props} />
+              <LazyImport LazyComponent={Profile}
+              {...routeProps}
+              {...props}
+              />
+            </PageWrapper>
+          )}
+        />
+
+        <Route
+          path="/account-status"
+          render={routeProps => (
+            <PageWrapper {...routeProps} {...props}>
+              <LazyImport LazyComponent={AccounStatus}
+              {...routeProps}
+              {...props}
+              />
             </PageWrapper>
           )}
         />

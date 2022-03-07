@@ -50,29 +50,28 @@ export const login = args => {
 */
 export const logout = args => {
   return dispatch => {
-    API.logout(args.token)
-      .then(_ => {
-        dispatch({
-          type: 'SET_AUTH_USER',
-          payload: {
-            token: null,
-            username: null,
-            id: null,
-            avatar: null,
-            members_count: null,
-            role: null,
-          },
-        });
-      })
-      .then(_ => {
-        args.history.push('/');
-      })
-      .catch(_ => {
-        toast.warning(args.t('pageWrapper.errors.logoutFailed'));
-      });
+    return API.logout(args.token)
+          .then(_ => {
+            dispatch({
+              type: 'SET_AUTH_USER',
+              payload: {
+                token: null,
+                username: null,
+                id: null,
+                avatar: null,
+                members_count: null,
+                tags: [],
+              },
+            });
+          })
+          .then(_ => {
+            args.history.push('/');
+          })
+          .catch(_ => {
+            toast.warning(args.t('pageWrapper.errors.logoutFailed'));
+          });
   };
 };
-
 
 /**
 * @function getAuthUser
@@ -85,10 +84,18 @@ export const getAuthUser = props => {
     return API.getAuthUser(props.auth.token)
       .then(res => {
         if (!res.id) {
-          throw new Error(props.t('pageWrapper.errors.unexpected'));
-        }
-
-        dispatch({
+            dispatch(
+              logout({
+                token:props.auth.token, 
+                history: props.history, 
+                t: props.t
+              })
+            ).then(()=>{
+              props.history.push('/account-status');
+            });
+            throw new Error(props.t('pageWrapper.errors.unexpected'));
+        } else {
+          dispatch({
           type: 'SET_AUTH_USER',
           payload: {
             ...props.auth,
@@ -96,15 +103,26 @@ export const getAuthUser = props => {
             id: res.id,
             avatar: res.avatar,
             members_count: res.members_count,
-            role: res.role,
+            tags: res.tags,
           },
         });
+      }
 
         return res;
       })
       .catch(error => toast.warning(error.message));
   };
 };
+
+
+export const AccountStatus = args => {
+  return ()=> {
+    return API.getAccountStatus(args.token)
+      .catch(()=>{
+        toast.warning(args.t('pageWrapper.errors.unexpected'));
+      })
+  }
+}
 
 
 
