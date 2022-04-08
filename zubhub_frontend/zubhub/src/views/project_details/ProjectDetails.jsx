@@ -196,7 +196,7 @@ function ProjectDetails(props) {
                     </Typography>
                   </Link>
                   {project.creator.id === props.auth.id ? (
-                    <>
+                    <Grid container justify="flex-end">
                       <Link
                         className={classes.textDecorationNone}
                         to={`/projects/${project.id}/edit`}
@@ -219,7 +219,7 @@ function ProjectDetails(props) {
                       >
                         {t('projectDetails.project.delete.label')}
                       </CustomButton>
-                    </>
+                    </Grid>
                   ) : (
                     <CustomButton
                       className={common_classes.marginLeft1em}
@@ -246,10 +246,7 @@ function ProjectDetails(props) {
                   xs={12}
                   sm={12}
                   md={12}
-                  className={clsx(
-                    classes.positionRelative,
-                    classes.marginBottom1em,
-                  )}
+                  className={clsx(classes.positionRelative)}
                 >
                   <Grid
                     item
@@ -492,18 +489,16 @@ function ProjectDetails(props) {
         >
           <DialogTitle id="delete-project">
             <Typography variant="h4">
-            {t('projectDetails.project.delete.dialog.primary')}
+              {t('projectDetails.project.delete.dialog.primary')}
             </Typography>
           </DialogTitle>
-          {delete_project_dialog_error !== null && (<Box
-            component="p"
-            className={classes.errorBox}
-          >
-            <Box component="span" className={classes.error}>
-              {delete_project_dialog_error}
+          {delete_project_dialog_error !== null && (
+            <Box component="p" className={classes.errorBox}>
+              <Box component="span" className={classes.error}>
+                {delete_project_dialog_error}
+              </Box>
             </Box>
-            
-          </Box>)}
+          )}
           <DialogContent>
             <Typography>
               {t('projectDetails.project.delete.dialog.secondary')}
