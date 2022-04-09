@@ -69,7 +69,7 @@ if ENVIRONMENT == 'production':
     # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-ALLOWED_HOSTS = ['127.0.0.1', FRONTEND_HOST, "www." +
+ALLOWED_HOSTS = ['127.0.0.1',"192.168.0.102", FRONTEND_HOST, "www." +
                  FRONTEND_HOST, BACKEND_HOST, "www."+BACKEND_HOST, "web"]
 # ALLOWED_HOSTS = ['*']
 
