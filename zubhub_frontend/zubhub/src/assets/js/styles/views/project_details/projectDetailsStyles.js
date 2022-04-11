@@ -105,7 +105,7 @@ const styles = theme => ({
       height: '3.5em',
       width: '100%',
       flexDirection: 'row',
-      justifyContent: 'flex-start',
+      justifyContent: 'flex-end',
     },
   },
   actionBoxButtonStyle: {

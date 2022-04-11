@@ -315,19 +315,21 @@ function ProjectDetails(props) {
                         handleSetState(toggleLike(e, props, project.id))
                       }
                     >
-                      {project.likes.includes(props.auth.id) ? (
-                        <ClapIcon
-                          arial-label={t(
-                            'projectDetails.ariaLabels.likeButton.unlilke',
-                          )}
-                        />
-                      ) : (
-                        <ClapBorderIcon
-                          arial-label={t(
-                            'projectDetails.ariaLabels.likeButton.like',
-                          )}
-                        />
-                      )}
+                      <Box display="flex" pr={1}>
+                        {project.likes.includes(props.auth.id) ? (
+                          <ClapIcon
+                            arial-label={t(
+                              'projectDetails.ariaLabels.likeButton.unlilke',
+                            )}
+                          />
+                        ) : (
+                          <ClapBorderIcon
+                            arial-label={t(
+                              'projectDetails.ariaLabels.likeButton.like',
+                            )}
+                          />
+                        )}
+                      </Box>
                       <Typography>
                         {nFormatter(project.likes.length)}
                       </Typography>
@@ -342,19 +344,21 @@ function ProjectDetails(props) {
                         handleSetState(toggleSave(e, props, project.id))
                       }
                     >
-                      {project.saved_by.includes(props.auth.id) ? (
-                        <BookmarkIcon
-                          aria-label={t(
-                            'projectDetails.ariaLabels.saveButton.unsave',
-                          )}
-                        />
-                      ) : (
-                        <BookmarkBorderIcon
-                          aria-label={t(
-                            'projectDetails.ariaLabels.saveButton.save',
-                          )}
-                        />
-                      )}
+                      <Box display="flex" pr={1}>
+                        {project.saved_by.includes(props.auth.id) ? (
+                          <BookmarkIcon
+                            aria-label={t(
+                              'projectDetails.ariaLabels.saveButton.unsave',
+                            )}
+                          />
+                        ) : (
+                          <BookmarkBorderIcon
+                            aria-label={t(
+                              'projectDetails.ariaLabels.saveButton.save',
+                            )}
+                          />
+                        )}
+                      </Box>
                     </CustomButton>
                     <Typography
                       color="textSecondary"
@@ -362,7 +366,9 @@ function ProjectDetails(props) {
                       component="span"
                       className={classes.actionBoxButtonStyle}
                     >
-                      <VisibilityIcon />
+                      <Box display="flex" pr={1}>
+                        <VisibilityIcon />
+                      </Box>
                       <Typography>{project.views_count}</Typography>
                     </Typography>
                   </Box>

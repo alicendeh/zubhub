@@ -65,6 +65,9 @@ function Projects(props) {
     previous: prev_page,
     next: next_page,
   } = props.projects.all_projects;
+
+  console.log(props.projects.all_projects, 'here');
+
   const { hero } = props.projects;
   const staff_picks = props.projects.staff_picks;
   const { t } = props;
@@ -196,7 +199,10 @@ function Projects(props) {
           >
             {prev_page ? (
               <CustomButton
-               className={clsx(classes.floatLeft, classes.buttonGroupStyleAlternative)}
+                className={clsx(
+                  classes.floatLeft,
+                  classes.buttonGroupStyleAlternative,
+                )}
                 size="large"
                 startIcon={<NavigateBeforeIcon />}
                 onClick={(e, page = prev_page.split('?')[1]) => {
@@ -210,7 +216,10 @@ function Projects(props) {
             ) : null}
             {next_page ? (
               <CustomButton
-                 className={clsx(classes.floatRight, classes.buttonGroupStyleAlternative)} 
+                className={clsx(
+                  classes.floatRight,
+                  classes.buttonGroupStyleAlternative,
+                )}
                 size="large"
                 endIcon={<NavigateNextIcon />}
                 onClick={(e, page = next_page.split('?')[1]) => {
