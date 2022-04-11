@@ -46,6 +46,7 @@ const styles = theme => ({
   },
 
   customInputStyle: {
+    border: 'none',
     width: '100%',
     borderRadius: 15,
     '&.MuiOutlinedInput-notchedOutline': {

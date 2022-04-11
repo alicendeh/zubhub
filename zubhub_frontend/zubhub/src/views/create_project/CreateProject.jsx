@@ -78,6 +78,9 @@ import { publish_type } from '../../assets/js/utils/constants';
 import CustomButton from '../../components/button/Button';
 import styles from '../../assets/js/styles/views/create_project/createProjectStyles';
 import commonStyles from '../../assets/js/styles';
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
 
 const useStyles = makeStyles(styles);
 const useCommonStyles = makeStyles(commonStyles);
@@ -656,7 +659,23 @@ function CreateProject(props) {
                         >
                           {t('createProject.inputs.category.topHelperText')}
                         </Typography>
-                        <Select
+
+                        <Stack className={classes.customInputStyle}>
+                          <Autocomplete
+                            multiple
+                            options={categories}
+                            getOptionLabel={option => option.name}
+                            filterSelectedOptions
+                            renderInput={params => (
+                              <TextField
+                                {...params}
+                                label="Select one or more categories"
+                                placeholder="categories"
+                              />
+                            )}
+                          />
+                        </Stack>
+                        {/* <Select
                           labelId="category"
                           id="category"
                           name="category"
@@ -676,7 +695,7 @@ function CreateProject(props) {
                                 {category.name}
                               </MenuItem>
                             ))}
-                        </Select>
+                        </Select> */}
                         <FormHelperText
                           error
                           className={classes.fieldHelperTextStyle}
@@ -1350,3 +1369,16 @@ export default connect(
     validationSchema,
   })(CreateProject),
 );
+const top100Films = [
+  { title: 'The Shawshank Redemption', year: 1994 },
+  { title: 'The Godfather', year: 1972 },
+  { title: 'The Godfather: Part II', year: 1974 },
+  { title: 'The Dark Knight', year: 2008 },
+  { title: '12 Angry Men', year: 1957 },
+  { title: "Schindler's List", year: 1993 },
+  { title: 'Pulp Fiction', year: 1994 },
+  {
+    title: 'The Lord of the Rings: The Return of the King',
+    year: 2003,
+  },
+];
